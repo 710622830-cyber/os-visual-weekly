@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# OS artifacts
+*.tmp
+*.bak
+
+# 不要忽略 .gitkeep / README / index.html —— 这是项目交付物
+!index.html
