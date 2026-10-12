@@ -12,4 +12,4 @@
 
 **更新方式**：自动化任务每周一 09:00 执行 → 追加 section → git push → GitHub Pages 自动部署。
 
-**访问地址**（GitHub Pages 启用后填写）：`<待填>`
+**访问地址**：https://710622830-cyber.github.io/os-visual-weekly/
