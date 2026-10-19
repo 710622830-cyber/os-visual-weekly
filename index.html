@@ -139,6 +139,22 @@ table.compare td.label{font-weight:600;color:var(--ink-2);width:16%;background:#
 }
 footer{margin-top:42px;padding-top:18px;border-top:1px solid var(--line);text-align:center;color:var(--ink-3);font-size:12px}
 </style>
+<style>
+.week-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:6px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);position:sticky;top:8px;z-index:30}
+.wtab{appearance:none;-webkit-appearance:none;border:1px solid var(--line);background:#f4f6fb;color:var(--ink-2);font-family:inherit;font-size:14px;font-weight:600;padding:9px 15px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;line-height:1.2;transition:background .15s,color .15s,box-shadow .15s}
+.wtab:hover{background:#e9edf8;color:var(--ink)}
+.wtab .wtab-sub{font-weight:400;font-size:11.5px;color:var(--ink-3)}
+.wtab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 2px 10px rgba(44,92,255,.28)}
+.wtab[aria-selected="true"] .wtab-sub{color:rgba(255,255,255,.8)}
+.wtab-dot{font-size:10px;font-weight:700;background:#ff5a3c;color:#fff;padding:2px 6px;border-radius:999px;letter-spacing:.4px}
+.wtab[aria-selected="true"] .wtab-dot{background:#fff;color:var(--accent)}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:panelIn .22s ease}
+@keyframes panelIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.tab-hint{font-size:12px;color:var(--ink-3);margin:0 0 10px 2px}
+@media(max-width:900px){.week-tabs{position:static;gap:6px}.wtab{font-size:13px;padding:8px 12px}}
+@media print{.week-tabs{display:none}.tab-panel{display:block!important}}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -156,6 +172,14 @@ footer{margin-top:42px;padding-top:18px;border-top:1px solid var(--line);text-al
   </div>
 </header>
 
+<nav class="week-tabs" id="weekTabs" role="tablist" aria-label="周报分期">
+  <button class="wtab" type="button" role="tab" data-panel="panel-base" aria-selected="true">📖 基线总览<span class="wtab-sub">2026 年度对照</span></button>
+  <button class="wtab" type="button" role="tab" data-panel="panel-w41" aria-selected="false">🗓 W41<span class="wtab-sub">10.05–10.11</span></button>
+  <button class="wtab" type="button" role="tab" data-panel="panel-w42" aria-selected="false">🗓 W42<span class="wtab-sub">10.12–10.18</span><span class="wtab-dot">最新</span></button>
+</nav>
+<p class="tab-hint">按周分期切换 · URL hash 同步（#panel-w42 可直接定位到某一周）</p>
+
+<div class="tab-panel" id="panel-base" role="tabpanel">
 <div class="section">
   <h2>TL;DR · 一句话总结</h2>
   <div class="callout">
@@ -659,7 +683,8 @@ footer{margin-top:42px;padding-top:18px;border-top:1px solid var(--line);text-al
     说明：本报告中所有配图均为 <strong>原文章截图 base64 内嵌</strong>，<strong>不是 AI 生成，不是 CSS 重建示意</strong>。每张图的"图源"链接均可点击直达信源页面。调研时间窗：2026.06 - 2026.09。
   </p>
 </div>
-
+</div>
+<div class="tab-panel" id="panel-w41" role="tabpanel">
 <div class="section" style="border-top:3px solid #e88a1f;background:linear-gradient(180deg,#fffbf2 0%,#fff 30%);">
   <h2>📅 第 1 周增量 · 2026-W41（2026-10-05 ~ 2026-10-11）</h2>
   <p style="color:var(--ink-3);font-size:13px;margin:-8px 0 14px">第 1 次周报增量。聚焦上一周（10.05 ~ 10.11）三大 OS 生态关键事件：<span class="badge ok">2026.10.12 整理</span></p>
@@ -730,7 +755,8 @@ footer{margin-top:42px;padding-top:18px;border-top:1px solid var(--line);text-al
   </ol>
   <p style="font-size:12px;color:var(--ink-3);margin-top:14px">📌 本次增量配图共 <strong>4 张</strong> Apple iPhone Duo / Apple TV HomeView / Welcome Home 官方视觉；Huawei / vivo 视觉继续以 v1 章节已收录的官方截图为准（本周事件为「推送 / 排期」性质，无新视觉元素）。</p>
 </div>
-
+</div>
+<div class="tab-panel" id="panel-w42" role="tabpanel">
 <div class="section" style="border-top:3px solid #2f6fed;background:linear-gradient(180deg,#f5f9ff 0%,#fff 30%);">
   <h2>📅 第 2 周增量 · 2026-W42（2026-10-12 ~ 2026-10-18）</h2>
   <p style="color:var(--ink-3);font-size:13px;margin:-8px 0 14px">第 2 次周报增量。本周主题：<strong>品牌视觉「减法」与多品牌界面收敛</strong>——Apple Music 去红、ColorOS 17 三品牌统一、鸿蒙把空间感搬到 PC。<span class="badge ok">2026.10.19 整理</span></p>
@@ -813,8 +839,31 @@ footer{margin-top:42px;padding-top:18px;border-top:1px solid var(--line);text-al
   </ol>
   <p style="font-size:12px;color:var(--ink-3);margin-top:14px">📌 本次增量配图共 <strong>5 张</strong>：Apple Music 新图标 / Music App 内部（9to5Mac 实机截图）、华为 MateBook 官方发布说明（IT之家转存）、ColorOS 17 官方 KV / AI Mind Pilot（OPPO Newsroom 一手物料）；vivo 本周无新视觉。</p>
 </div>
-
+</div>
 <footer>整理人：颜值 · UI 设计师视角 · 仅供 xes 内部参考 · 2026.10.09</footer>
 </div>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.wtab');
+  var panels=document.querySelectorAll('.tab-panel');
+  function show(id,push){
+    var ok=false;
+    panels.forEach(function(p){var on=(p.id===id);if(on)ok=true;p.classList.toggle('active',on);});
+    if(!ok) id=tabs[0]&&tabs[0].dataset.panel;
+    panels.forEach(function(p){p.classList.toggle('active',p.id===id);});
+    tabs.forEach(function(b){b.setAttribute('aria-selected', b.dataset.panel===id?'true':'false');});
+    try{ if(push) history.replaceState(null,'','#'+id); }catch(e){}
+  }
+  tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.panel,true);});});
+  var h=(location.hash||'').replace('#','');
+  var valid=Array.prototype.some.call(tabs,function(b){return b.dataset.panel===h;});
+  show(valid?h:'panel-base',false);
+  window.addEventListener('hashchange',function(){
+    var hh=(location.hash||'').replace('#','');
+    if(Array.prototype.some.call(tabs,function(b){return b.dataset.panel===hh;})) show(hh,false);
+  });
+})();
+</script>
+
 </body>
 </html>
